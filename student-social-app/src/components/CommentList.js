@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CommentList({ comments, onComment }) {
+export default function CommentList({ comments = [], onComment }) {
   const [text, setText] = useState("");
 
   const handleSubmit = () => {

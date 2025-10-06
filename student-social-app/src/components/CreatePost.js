@@ -1,28 +1,27 @@
+"use client";
 import { useState } from "react";
-import api from "../utils/api";
 
 export default function CreatePost({ onPost }) {
   const [content, setContent] = useState("");
 
-  const handlePost = async () => {
-    if (!content.trim()) return;
-    const res = await api.post("/posts", { content });
-    onPost(res.data);
-    setContent("");
+  const handleSubmit = () => {
+    if (content.trim()) {
+      onPost(content);
+      setContent("");
+    }
   };
 
   return (
-    <div className="bg-white rounded shadow p-3">
+    <div className="mb-4">
       <textarea
-        className="w-full border p-2 rounded mb-2"
-        rows="3"
-        placeholder="คุณกำลังคิดอะไรอยู่?"
+        className="w-full p-2 border rounded mb-2"
+        placeholder="เขียนโพสต์..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
       <button
-        onClick={handlePost}
-        className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+        onClick={handleSubmit}
+        className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded"
       >
         โพสต์
       </button>
